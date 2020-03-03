@@ -46,12 +46,47 @@ class SortTestCase(TestCase):
         from sorters import bubble_sort
         idx = 1
         bubble_sort(self.data, idx)
-
-        self.debugPrint()                   # remove this line - only used while creating the test
         for a, b in self.iterPairs():
-            print('{} < {}'.format(a, b))   # remove this line - only used while creating the test
             self.assertLessEqual(a[idx], b[idx],
                 msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
 
+    def test_selection_sort_descending(self):
+        from sorters import selection_sort
+        idx = 2
+        selection_sort(self.data, idx)
+        for a,b in self.iterPairs():
+            self.assertLessEqual(a[idx], b[idx],
+                msg='previous {} should be less than current {} at index {}'.format(a,b,idx))
 
-    # add at least 5 more methods to the class
+    def test_selection_sort_ascending(self):
+        from sorters import selection_sort
+        idx = 2
+        selection_sort(self.data, idx, True)
+        for a,b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                msg='previous {} should be less than current {} at index {}'.format(a,b,idx))
+
+    def test_bubble_sort_descending(self):
+        from sorters import bubble_sort
+        idx = 2
+        bubble_sort(self.data, idx)
+        for a,b in self.iterPairs():
+            self.assertLessEqual(a[idx], b[idx],
+                msg='previous {} should be less than current {} at index {}'.format(a,b,idx))
+    
+    def test_insertion_sort_ascending(self):
+        from sorters import insertion_sort
+        idx = 0
+        insertion_sort(self.data, idx, True)
+        for a,b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                msg='previous {} should be more than current {} at index {}'.format(a,b,idx))
+    
+    def test_insertion_sort_descending(self):
+        from sorters import insertion_sort
+        idx = 1
+        insertion_sort(self.data, idx, False)
+        for a,b in self.iterPairs():
+            self.assertLessEqual(a[idx], b[idx],
+                msg='previous {} should be more than current {} at index {}'.format(a,b,idx))
+

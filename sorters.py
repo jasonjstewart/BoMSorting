@@ -24,7 +24,7 @@ def bubble_sort(data, index, descending=False):
     # replace this with your own algorithm (do not use Python's sort)
     for item in range(len(data)-1,0,-1):
         for i in range(item):
-            if descending== False:
+            if descending == False:
                 if data[i][index]>data[i+1][index]:
                     temp = data[i]
                     data[i]=data[i+1]
@@ -46,7 +46,7 @@ def insertion_sort(data, index, descending=False):
         position = item
         currentValue = data[item]
         if descending == True:
-            while position>0 and data[position-1][index]<currentValue[index]:
+            while position > 0 and data[position-1][index]<currentValue[index]:
                 data[position]=data[position-1]
                 position=position-1
         else:
@@ -64,12 +64,25 @@ def selection_sort(data, index, descending=False):
         maxposition=0
         for i in range(1,item+1):
             if descending == False:
-                if data[i][index]<data[maxposition][index]:
-                    maxposition=i
-            else:
                 if data[i][index]>data[maxposition][index]:
                     maxposition=i
-        temp=data[maxposition]
-        data[maxposition]=data[item]
-        data[item]=temp
+            else:
+                if data[i][index]<data[maxposition][index]:
+                    maxposition=i
+        temp=data[item]
+        data[item]=data[maxposition]
+        data[maxposition]=temp
 
+# data = [
+#     ( 'bilbo', 'baggins', 111 ),
+#     ( 'homer', 'simpson', 50 ),
+#     ( 'luke', 'skywalker', 87 ),
+#     ( 'frodo', 'baggins', 100 ),
+# ]
+
+# selection_sort(data,2)
+# print(data)
+# bubble_sort(data,0,True)
+# print(data)
+# insertion_sort(data,1)
+# print(data)

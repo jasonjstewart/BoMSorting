@@ -13,7 +13,7 @@ def get_data():
     # Convert the entire string to lowercase.
 
     with open('bom.txt', 'r') as myfile:
-    data = myfile.read().lower()
+        data = myfile.read().lower()
 
     # Split the string by any non-alpha character. Regular expressions are your friend here.
     # A simple regular expression with `re.split(...)` will do this for you.
