@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from sorters import bubble_sort, insertion_sort, selection_sort
-from collections import namedtuple
+from collections import namedtuple, Counter
+import re
 
 
 # data for a single word
@@ -9,25 +10,34 @@ WordData = namedtuple("WordData", [ 'word', 'count', 'percent' ])
 def get_data():
     '''Returns the list of WordData objects'''
     # Read `bom.txt` into a string.
+    with open('bom.txt', 'r') as myfile:
+        data = myfile.read().lower()
+    #print(data)
+    data = re.split('[^a-zA-Z]', data)
+
 
     # Convert the entire string to lowercase.
 
     # Split the string by any non-alpha character. Regular expressions are your friend here.
     # A simple regular expression with `re.split(...)` will do this for you.
 
+    data = [item for item in data if len(item)>=5]
     # Using a list comprehension with a conditional (if), create a new list that contains only
     # those words that are 5+ alpha characters in length. All of the following will be
     # skipped: "am", "", "i", "are".
 
+    print(len(data))
     # Count the frequency of each word in the list, creating a WordData object for each
     # unique word.  Round all percentages to three decimal places: 3.141592 => 3.142.
     # See the `collections.Counter` module is your friend here.  The percent for a given
     # word is calculated as `count / length of list`, rounded to one decimal place.
-    data = []
+    output = []
+    uniquedata = Counter(data)
+    
+    for item in uniquedata:
+        output.append(WordData(item, uniquedata[item], round((uniquedata[item]/len(data))*100,3)))
 
-    # return the list of WordData objects, which contains
-    # a single object for each unique word
-    return data
+    return output
 
 
 
@@ -53,6 +63,7 @@ def main():
     # WordData objects in the list.
     print()
     print('BY COUNT:')
+    data = get_data()
     insertion_sort(data, 1, descending=True)
     for wd in data[:50]:
         print(wd)
@@ -62,10 +73,14 @@ def main():
     # WordData objects in the list.
     print()
     print('BY WORD:')
-    selection_sort(data, 0)
+    data = get_data()
+    selection_sort(data, 0, descending=True)
     for wd in data[:50]:
         print(wd)
 
 
 if __name__ == '__main__':
     main()
+
+# get_data()
+

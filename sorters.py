@@ -22,16 +22,66 @@
 def bubble_sort(data, index, descending=False):
     '''Sorts using the bubble sort algorithm'''
     # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    for item in range(len(data)-1,0,-1):
+        for i in range(item):
+            if descending== False:
+                if data[i][index]>data[i+1][index]:
+                    temp = data[i]
+                    data[i]=data[i+1]
+                    data[i+1]=temp
+            else:
+                if data[i][index]<data[i+1][index]:
+                    temp = data[i]
+                    data[i]=data[i+1]
+                    data[i+1]=temp
+    
+    #data.sort(key=lambda t: t[index], reverse=descending)
 
 
 def insertion_sort(data, index, descending=False):
     '''Sorts using the insertion sort algorithm'''
     # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    for item in range(1,len(data)):
+
+        position = item
+        currentValue = data[item]
+        if descending == True:
+            while position>0 and data[position-1][index]<currentValue[index]:
+                data[position]=data[position-1]
+                position=position-1
+        else:
+            while position>0 and data[position-1][index]>currentValue[index]:
+                data[position]=data[position-1]
+                position=position-1
+        
+        data[position]=currentValue
+
+    #data.sort(key=lambda t: t[index], reverse=descending)
 
 
 def selection_sort(data, index, descending=False):
     '''Sorts using the selection sort algorithm'''
     # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    for item in range(len(data)-1,0,-1):
+        maxposition=0
+        for i in range(1,item+1):
+            if descending == False:
+                if data[i][index]<data[maxposition][index]:
+                    maxposition=i
+            else:
+                if data[i][index]>data[maxposition][index]:
+                    maxposition=i
+        temp=data[maxposition]
+        data[maxposition]=data[item]
+        data[item]=temp
+    #data.sort(key=lambda t: t[index], reverse=descending)
+
+
+# data = [
+#     ( 'leia', 'skywalker', 75 ),
+#     ( 'homer', 'simpson', 50 ),
+#     ( 'luke', 'z', 87 ),
+#     ( 'bilbo', 'baggins', 111 ),
+# ]
+# insertion_sort(data, 1, descending=True)
+# print(data)
