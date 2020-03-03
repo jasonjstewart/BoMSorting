@@ -1,5 +1,7 @@
 # Assignment: Book of Mormon Words
 
+CODE WRITTEN BY JASON STEWART
+
 Create a new project and program three sorting algorithms:
 
 1. Bubble Sort

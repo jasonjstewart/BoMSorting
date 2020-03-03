@@ -10,23 +10,20 @@ WordData = namedtuple("WordData", [ 'word', 'count', 'percent' ])
 def get_data():
     '''Returns the list of WordData objects'''
     # Read `bom.txt` into a string.
-    with open('bom.txt', 'r') as myfile:
-        data = myfile.read().lower()
-    #print(data)
-    data = re.split('[^a-zA-Z]', data)
-
-
     # Convert the entire string to lowercase.
+
+    with open('bom.txt', 'r') as myfile:
+    data = myfile.read().lower()
 
     # Split the string by any non-alpha character. Regular expressions are your friend here.
     # A simple regular expression with `re.split(...)` will do this for you.
+    data = re.split('[^a-zA-Z]', data)
 
-    data = [item for item in data if len(item)>=5]
     # Using a list comprehension with a conditional (if), create a new list that contains only
     # those words that are 5+ alpha characters in length. All of the following will be
     # skipped: "am", "", "i", "are".
+    data = [item for item in data if len(item)>=5]
 
-    print(len(data))
     # Count the frequency of each word in the list, creating a WordData object for each
     # unique word.  Round all percentages to three decimal places: 3.141592 => 3.142.
     # See the `collections.Counter` module is your friend here.  The percent for a given
@@ -82,5 +79,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# get_data()
 

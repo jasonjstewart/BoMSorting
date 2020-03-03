@@ -56,8 +56,6 @@ def insertion_sort(data, index, descending=False):
         
         data[position]=currentValue
 
-    #data.sort(key=lambda t: t[index], reverse=descending)
-
 
 def selection_sort(data, index, descending=False):
     '''Sorts using the selection sort algorithm'''
@@ -74,14 +72,4 @@ def selection_sort(data, index, descending=False):
         temp=data[maxposition]
         data[maxposition]=data[item]
         data[item]=temp
-    #data.sort(key=lambda t: t[index], reverse=descending)
 
-
-# data = [
-#     ( 'leia', 'skywalker', 75 ),
-#     ( 'homer', 'simpson', 50 ),
-#     ( 'luke', 'z', 87 ),
-#     ( 'bilbo', 'baggins', 111 ),
-# ]
-# insertion_sort(data, 1, descending=True)
-# print(data)
